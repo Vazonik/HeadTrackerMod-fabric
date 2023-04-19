@@ -1,29 +1,25 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "headtrackermod",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Head Tracker Mod",
+  "description": "Use headtracking program to adjust camera position.",
   "authors": [
-    "Me!"
+    "Vazonik"
   ],
-  "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
-  },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/headtrackermod/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.fabricmc.headtrackermod.HeadTrackerMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "headtrackermod.mixins.json"
   ],
 
   "depends": {
@@ -31,8 +27,5 @@
     "fabric-api": "*",
     "minecraft": "~1.19.4",
     "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
