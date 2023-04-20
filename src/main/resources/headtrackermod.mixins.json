@@ -6,6 +6,8 @@
   "mixins": [
   ],
   "client": [
+    "CameraPositionAccessor",
+    "CameraUpdate"
   ],
   "injectors": {
     "defaultRequire": 1
