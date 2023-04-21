@@ -13,21 +13,21 @@ import org.slf4j.LoggerFactory;
 public class HeadTrackerMod implements ModInitializer {
 	public static final String MOD_ID = "headtrackermod";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	private static final KeyBinding testKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-			"key." + MOD_ID + ".test",
-			InputUtil.Type.KEYSYM,
-			GLFW.GLFW_KEY_R,
-
-			"category." + MOD_ID + ".test"
-	));
+	public static final ModConfig CONFIG = new ModConfig("config.json");
 
 	public static Vec3d cameraOffset = Vec3d.ZERO;
+
+
+	public static Vec3d calculateCameraPosition(Vec3d actualPosition) {
+		return actualPosition.add(cameraOffset.add(CONFIG.CONFIG_OFFSET).multiply(CONFIG.SENSITIVITY));
+	}
+
 
 	@Override
 	public void onInitialize() {
 		ClientTickEvents.START_CLIENT_TICK.register(client -> {
-			while (testKeyBinding.wasPressed()) {
-				cameraOffset = cameraOffset.add(new Vec3d(0.0, 1.0, 0.0));
+			if (client.player != null) {
+				// TODO: Get camera offset live from tracker
 			}
 		});
 	}
