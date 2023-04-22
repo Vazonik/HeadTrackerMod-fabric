@@ -14,6 +14,7 @@ public class CameraUpdate {
     @Inject(at = @At("TAIL"), method = "update()V")
     private void update(CallbackInfo info) {
         Camera camera = MinecraftClient.getInstance().gameRenderer.getCamera();
+        HeadTrackerMod.beforeCameraUpdate();
         ((CameraPositionAccessor) camera).setCameraPos(HeadTrackerMod.calculateCameraPosition(camera.getPos()));
     }
 }

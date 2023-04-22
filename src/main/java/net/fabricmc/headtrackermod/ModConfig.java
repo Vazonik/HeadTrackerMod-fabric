@@ -17,29 +17,42 @@ public class ModConfig {
             FabricLoader.getInstance().getConfigDir().resolve(HeadTrackerMod.MOD_ID).toFile(), FILE_NAME
     );
 
-    public final float SENSITIVITY;
-    public final Vec3d CONFIG_OFFSET;
+    private float sensitivity;
+    private Vec3d offset;
 
-    public ModConfig(String fileName) {
-        JsonObject configJson = null;
-
+    public ModConfig() {
         setup();
+        load();
+        HeadTrackerMod.LOGGER.info("Loaded the Head Tracker Mod config file.");
+    }
+
+    public float getSensitivity() {
+        return sensitivity;
+    }
+
+    public Vec3d getOffset() {
+        return offset;
+    }
+
+    public void reload() {
+        load();
+        HeadTrackerMod.LOGGER.info("Reloaded the Head Tracker Mod config file successfully.");
+    }
+
+    private void load() {
         try {
-            configJson = (JsonObject) JsonParser.parseReader(new FileReader(CONFIG_FILE));
+            JsonObject configJson = (JsonObject) JsonParser.parseReader(new FileReader(CONFIG_FILE));
+
+            JsonObject offsetJson = configJson.get("cameraOffset").getAsJsonObject();
+            sensitivity = configJson.get("sensitivity").getAsFloat();
+            offset = new Vec3d(
+                    offsetJson.get("x").getAsFloat(),
+                    offsetJson.get("y").getAsFloat(),
+                    offsetJson.get("z").getAsFloat()
+            );
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-
-        assert configJson != null;
-
-        JsonObject offsetJson = configJson.get("cameraOffset").getAsJsonObject();
-
-        SENSITIVITY = configJson.get("sensitivity").getAsFloat();
-        CONFIG_OFFSET = new Vec3d(
-                offsetJson.get("x").getAsFloat(),
-                offsetJson.get("y").getAsFloat(),
-                offsetJson.get("z").getAsFloat()
-        );
     }
 
     private void setup() {
