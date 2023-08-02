@@ -22,8 +22,6 @@ public class ModKeyBindings {
 
     public static void registerBindings() {
         reloadSettings = create("reloadHTSettings", GLFW.GLFW_KEY_V);
-        moveCameraUp = create("moveCameraUp", GLFW.GLFW_KEY_R);
-        moveCameraDown = create("moveCameraDown", GLFW.GLFW_KEY_F);
     }
 
     private ModKeyBindings() {}
