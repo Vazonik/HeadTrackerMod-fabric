@@ -23,11 +23,11 @@ public class HeadTrackerMod implements ModInitializer {
 		// TODO: Get camera offset live from tracker
 
 		if (ModKeyBindings.moveCameraUp.isPressed()) {
-			cameraOffset = cameraOffset.add(0, CONFIG.getSensitivity() * 0.2, 0);
+			cameraOffset = cameraOffset.add(0, CONFIG.getSensitivity().y * 100, 0);
 		}
 
 		if (ModKeyBindings.moveCameraDown.isPressed()) {
-			cameraOffset = cameraOffset.add(0, CONFIG.getSensitivity() * -0.2, 0);
+			cameraOffset = cameraOffset.add(0, -CONFIG.getSensitivity().y * 100, 0);
 		}
 	}
 
